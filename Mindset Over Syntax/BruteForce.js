@@ -1,6 +1,7 @@
 const arr = ["apple", "banana", "mango", "apple"];
 
 //* Bruit Force
+//* Time Complexity = O(n2)
 const removeDupArr = (arr) => {
   const newArr = [];
 
@@ -16,6 +17,7 @@ const removeDupArr = (arr) => {
 console.log(removeDupArr(arr));
 
 //* Set implementation
+//* Time Complexity = O(n)
 const removeDupSet = (arr) => {
   const set = new Set(arr);
 
