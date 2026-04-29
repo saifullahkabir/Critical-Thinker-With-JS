@@ -29,9 +29,15 @@ const surveyResponses = [
 //TODO if is not exist then initialize with 1
 
 const count = surveyResponses.reduce((table, response) => {
-  table[response] = (table[response] || 0) + 1;
+  //   table[response] = (table[response] || 0) + 1;
+
+  if (!table[response]) {
+    table[response] = 0;
+  }
+
+  table[response] = table[response] + 1;
+
   return table;
 }, {});
 
 console.log(count);
-

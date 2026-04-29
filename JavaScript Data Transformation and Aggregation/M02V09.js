@@ -30,7 +30,12 @@ const posts = [
 //* O(n)
 const postByUserID = posts.reduce((table, post) => {
   // console.log(table, post);
-  table[post.userId] = table[post.userId] || [];
+  //   table[post.userId] = table[post.userId] || [];
+
+  if (!table[post.userId]) {
+    table[post.userId] = [];
+  }
+
   table[post.userId].push(post);
 
   return table;
@@ -40,7 +45,7 @@ const postByUserID = posts.reduce((table, post) => {
 
 //* O(n)
 const userWithPost = users.map((user) => {
-    console.log(postByUserID[user.id]);
+  console.log(postByUserID[user.id]);
   return {
     ...user,
     //* O(1)
@@ -49,4 +54,3 @@ const userWithPost = users.map((user) => {
 });
 
 console.log(JSON.stringify(userWithPost));
-

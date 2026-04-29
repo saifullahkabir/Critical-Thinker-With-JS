@@ -33,12 +33,19 @@ const sales = [
 //TODO calculate the revenue
 
 const totalSalesByCategory = sales.reduce((table, product) => {
-  // console.log(table, product);
-  table[product.category] = table[product.category] || {
-    totalRevenue: 0,
-    itemCount: 0,
-  };
-  table[product.category].totalRevenue +=  product.price * product.quantity;
+  //   table[product.category] = table[product.category] || {
+  //     totalRevenue: 0,
+  //     itemCount: 0,
+  //   };
+
+  if (!table[product.category]) {
+    table[product.category] = {
+      totalRevenue: 0,
+      itemCount: 0,
+    };
+  }
+
+  table[product.category].totalRevenue += product.price * product.quantity;
   table[product.category].itemCount += product.quantity;
   return table;
 }, {});
