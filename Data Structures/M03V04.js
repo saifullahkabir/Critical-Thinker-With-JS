@@ -10,7 +10,7 @@ class Queue {
     this.items.push(value);
   }
 
-  //* O(n)
+  //* O(n )
   dequeue() {
     if (this.isEmpty()) {
       return undefined;
