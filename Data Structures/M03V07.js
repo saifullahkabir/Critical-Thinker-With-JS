@@ -12,6 +12,7 @@ class LinkedList {
     this.length = 0;
   }
 
+  //* O(1)
   append(value) {
     const newNode = new Node(value);
 
@@ -29,6 +30,7 @@ class LinkedList {
     return this;
   }
 
+  //* O(1)
   prepend(value) {
     const newNode = new Node(value);
 
@@ -47,6 +49,8 @@ class LinkedList {
     return this;
   }
 
+  //* Best case = O(1)
+  //* Worst case = O(n)
   insert(index, value) {
     if (index < 0 || index > this.length) {
       console.error("Index out of bound");
@@ -77,13 +81,41 @@ class LinkedList {
     this.length++;
   }
 
-  remove() {}
+  //* Best case = O(1)
+  //* Worst case = O(n)
+  remove(index) {
+    if (index === 0) {
+      const removedItem = this.head.value;
+
+      this.head = this.head.next;
+
+      if (this.length === 1) {
+        this.tail = null;
+      }
+
+      this.length--;
+
+      return removedItem;
+    }
+
+    const leadingNode = this._traverseToIndex(index - 1);
+    const nodeToRemove = leadingNode.next;
+
+    leadingNode.next = nodeToRemove.next;
+
+    if (leadingNode.next === null) {
+      this.tail = leadingNode;
+    }
+
+    return nodeToRemove.value;
+  }
 
   // private helper method(private indicate symbol : _ )
   _traverseToIndex(index) {
     let count = 0;
     let currentNode = this.head;
 
+    //* O(n)
     while (count !== index) {
       currentNode = currentNode.next;
       count++;
@@ -107,6 +139,25 @@ class LinkedList {
 
 const linkedList = new LinkedList();
 
-linkedList.append(0).append(1).append(2).append(3);
+// linkedList.append("A"); //* 0
+// linkedList.append("B"); //* 1
+// linkedList.append("C"); //* 2
+
+// linkedList.print();
+
+// linkedList.remove(2);
+// linkedList.remove(1);
+// linkedList.remove(0);
+
+// linkedList.print();
+
+linkedList.append(1);
+linkedList.append(2);
+linkedList.append(3);
 
 linkedList.print();
+
+linkedList.prepend(50);
+
+linkedList.print();
+
